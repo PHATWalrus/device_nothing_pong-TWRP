@@ -15,4 +15,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_pong.mk
+    $(LOCAL_DIR)/twrp_Pong.mk

@@ -24,10 +24,10 @@
 # components.
 
 # Inherit from common
--include $(COMMON_PATH)/BoardConfigCommon.mk
+-include $(DEVICE_PATH)/BoardConfigCommon.mk
 
 # Recovery
-TARGET_OTA_ASSERT_DEVICE := pong
+#TARGET_OTA_ASSERT_DEVICE := Pong
 
 # TWRP specific build flags
 TW_FRAMERATE := 120
@@ -38,3 +38,4 @@ TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 
 TARGET_RECOVERY_DEVICE_MODULES += libexpat
 RECOVERY_LIBRARY_SOURCE_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libexpat.so
+TW_FORCE_KEYMASTER_VER := true
