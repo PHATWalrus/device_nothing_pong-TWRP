@@ -2,7 +2,7 @@
 export TARGET_ARCH="arm64-v8a"
 
 # About Us
-export FOX_VERSION="R11.1_3"
+export FOX_VERSION="R11.1_4"
 export OF_MAINTAINER="@phobosc_io"
 export FOX_BUILD_TYPE="Stable"
 
