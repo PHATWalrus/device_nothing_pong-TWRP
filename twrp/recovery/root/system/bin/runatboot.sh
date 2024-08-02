@@ -4,29 +4,39 @@
 IMAGE_PATH="/data/adb/ksu/modules.img"
 TARGET_DIR="/data/adb/modules"
 
-# Enable debugging
-set -x
+# Enable debugging (can be turned on or off via a variable)
+DEBUG=false
+
+# Function to log messages
+log_message() {
+  local level="$1"
+  local message="$2"
+  if [ "$DEBUG" = true ]; then
+    echo "$level: $message"
+  fi
+}
+
+# Function to handle errors
+handle_error() {
+  local message="$1"
+  log_message "ERROR" "$message"
+  exit 1
+}
 
 # Check if the image file exists
-if [ ! -f "$IMAGE_PATH" ]; then
-  echo "Error: Image file not found: $IMAGE_PATH" >&2
-  exit 1
-fi
+[ -f "$IMAGE_PATH" ] || handle_error "Image file not found: $IMAGE_PATH"
 
 # Check if the target directory exists and is writable
-if [ ! -d "$TARGET_DIR" ]; then
-  echo "Error: Target directory not found: $TARGET_DIR" >&2
-  exit 1
-elif [ ! -w "$TARGET_DIR" ]; then
-  echo "Error: Target directory is not writable: $TARGET_DIR" >&2
-  exit 1
-fi
+[ -d "$TARGET_DIR" ] || handle_error "Target directory not found: $TARGET_DIR"
+[ -w "$TARGET_DIR" ] || handle_error "Target directory is not writable: $TARGET_DIR"
 
-# Mount the image if both checks pass
+# Mount the image
 if ! mount "$IMAGE_PATH" "$TARGET_DIR"; then
-  echo "Error: Failed to mount $IMAGE_PATH to $TARGET_DIR" >&2
-  exit 1
+  handle_error "Failed to mount $IMAGE_PATH to $TARGET_DIR"
 fi
 
-# Disable debugging
-set +x
+# Optionally, log success message
+log_message "INFO" "Successfully mounted $IMAGE_PATH to $TARGET_DIR"
+
+# Disable debugging (can be turned on or off via a variable)
+[ "$DEBUG" = false ] && set +x
