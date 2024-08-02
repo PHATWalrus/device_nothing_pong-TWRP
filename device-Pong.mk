@@ -1,5 +1,5 @@
-#
-# Copyright 2017 The Android Open Source Project
+# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2019 The OmniRom Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,7 +12,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+#
+# This file is the build configuration for a full Android
+# build for grouper hardware. This cleanly combines a set of
+# device-specific aspects (drivers) with a device-agnostic
+# product configuration (apps).
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_Pong.mk
+# Inherit from OEM SOC-common
+$(call inherit-product, $(DEVICE_PATH)/device-common.mk)
+
+TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)/twrp
