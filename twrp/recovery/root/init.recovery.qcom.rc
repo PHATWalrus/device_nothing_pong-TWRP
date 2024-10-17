@@ -27,6 +27,7 @@
 
 import /init.recovery.qcom_decrypt.rc
 
+<<<<<<< HEAD
 service overrideprops /system/bin/overrideprops.sh
     user root
     group root
@@ -34,6 +35,8 @@ service overrideprops /system/bin/overrideprops.sh
     oneshot
     seclabel u:r:recovery:s0
 
+=======
+>>>>>>> staging
 on init
     start boot-hal-1-2
 
@@ -44,7 +47,10 @@ on fs
 
 on boot
     setprop sys.usb.config adb
+<<<<<<< HEAD
     start overrideprops
+=======
+>>>>>>> staging
 
 on property:twrp.modules.loaded=true
     # Mount firmware

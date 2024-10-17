@@ -1,8 +1,0 @@
-[
-  {
-    "remote": "TeamWin",
-    "repository": "android_device_nothing_sm84xx-common",
-    "target_path": "device/nothing/sm84xx-common",
-    "branch": "android-12.1"
-  }
-]
